@@ -4,9 +4,15 @@
 set -e
 
 # Define the directory
+REALSENSE_install_DIR=~/catkin_ws/src
 REALSENSE_DIR=~/catkin_ws/src/realsense-ros
-git config --global --add safe.directory $REALSENSE_DIR
 
+cd $REALSENSE_install_DIR
+
+# Clone the repository
+git clone https://github.com/IntelRealSense/realsense-ros.git -b ros1-legacy
+
+git config --global --add safe.directory $REALSENSE_DIR
 cd $REALSENSE_DIR
 git checkout $(git tag | sort -V | grep -P "^2.\d+\.\d+" | tail -1)
 cd ..
